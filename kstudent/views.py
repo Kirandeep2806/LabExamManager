@@ -70,6 +70,7 @@ def homePage(request):
     # print("UuuuuuuuuuuuuuuuuuuuuuuuuuuuserNname : ", request.user)
     _shift = request.user.student_profile.current_shift
     _pin = str(request.user)
+    print("................" + _pin)
 
     try:
         try:
@@ -81,6 +82,7 @@ def homePage(request):
             if temp == _pin:
                 pass
             else:
+                print("!@@@@@@@@@@@@@@@@@@@@@")
                 print(temp)
         _whether_any_exam = Exam.objects.filter(Batch_Shift_Exam__startswith=f"{_pin[0:2]}_{_shift}", Started=True)[0]
         print(_whether_any_exam.ExamName)
@@ -101,6 +103,7 @@ def homePage(request):
 
             return render(request, "kstudent/homePage.html", { "message":1, "timeRemaining":minutes_remaining })
     except Exception as e:
+        print("hiiiiiiiiiiiiiiiii")
         print(e)
     return render(request, "kstudent/homePage.html", { "message":0 })
 
